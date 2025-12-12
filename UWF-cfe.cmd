@@ -96,17 +96,6 @@ echo:
 echo:
 
 if %is_uwf_enabled%==false (
-    if %is_wu_enabled%==false (
-        echo     %blue_strong% W %reset_color% Recover Windows Update
-    ) else (
-        echo:
-    )
-) else (
-    echo:
-)
-echo:
-
-if %is_uwf_enabled%==false (
     if %is_fast_startup_enabled%==false (
         echo     %yellow_strong% Z %reset_color% Recover Fast Startup
     ) else (
@@ -127,16 +116,15 @@ echo:
 echo     %magenta_strong% Q %reset_color% Quit
 echo:
 
-choice /c iuedwzs0q /n /m "Please choose command:"
+choice /c iuedzs0q /n /m "Please choose command:"
 if %ERRORLEVEL%==1 goto INSTALL_UWF
 if %ERRORLEVEL%==2 goto UNINSTALL_UWF
 if %ERRORLEVEL%==3 goto ENABLE_UWF
 if %ERRORLEVEL%==4 goto DISABLE_UWF
-if %ERRORLEVEL%==5 goto RECOVER_WINDOWS_UPDATE
-if %ERRORLEVEL%==6 goto RECOVER_FAST_STARTUP
-if %ERRORLEVEL%==7 goto SHOW_SETTING
-if %ERRORLEVEL%==8 goto REFRESH
-if %ERRORLEVEL%==9 goto END
+if %ERRORLEVEL%==5 goto RECOVER_FAST_STARTUP
+if %ERRORLEVEL%==6 goto SHOW_SETTING
+if %ERRORLEVEL%==7 goto REFRESH
+if %ERRORLEVEL%==8 goto END
 
 rem Install UWF
 :INSTALL_UWF
@@ -209,27 +197,6 @@ echo:
 choice /n /m "Do you want continue %red_strong% Disbale UWF %reset_color%? [%green%Y%reset_color%, %red%N%reset_color%]"
 if %ERRORLEVEL%==1 (
     call ".\functions\disable_uwf.cmd"
-) else (
-    call ".\functions\no_action.cmd"
-)
-goto MAIN
-
-rem Recover Windows Update
-:RECOVER_WINDOWS_UPDATE
-if %is_uwf_enabled%==true goto PASS_RECOVER_WINDOWS_UPDATE
-if %is_wu_enabled%==true goto PASS_RECOVER_WINDOWS_UPDATE
-goto CONTINUE_RECOVER_WINDOWS_UPDATE
-
-:PASS_RECOVER_WINDOWS_UPDATE
-set message=null
-set require_check_state=false
-goto MAIN
-
-:CONTINUE_RECOVER_WINDOWS_UPDATE
-echo:
-choice /n /m "Do you want continue %yellow_strong% Recover Windows Update %reset_color%? [%green%Y%reset_color%, %red%N%reset_color%]"
-if %ERRORLEVEL%==1 (
-    call ".\functions\recover_windows_update.cmd"
 ) else (
     call ".\functions\no_action.cmd"
 )

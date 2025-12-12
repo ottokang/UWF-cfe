@@ -1,6 +1,9 @@
 rem Enable UWF
 
 cls
+echo %cyan%Disable Fast Startup...%reset_color%
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v HiberbootEnabled /t REG_DWORD /d 0 /f
+
 echo %cyan%Enable UWF...%reset_color%
 echo:
 

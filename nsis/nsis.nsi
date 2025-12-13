@@ -6,7 +6,7 @@
 ; Basic definitions
 !define APP_NAME "UWF-cfe"
 !define APP_EXE  "UWF-cfe.cmd"
-!define APP_VERSION "1.0.0"
+!define APP_VERSION "1.0.1"
 !define APP_PUBLISHER "UWF-cfe Developers"
 !define APP_UNINSTKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}"
 !define APP_ICON "UWF-cfe_icon.ico"

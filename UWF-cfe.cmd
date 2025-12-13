@@ -14,10 +14,10 @@ set is_wu_enabled=true
 set is_fast_startup_enabled=true
 
 rem Set const
-set _VERSION_=1.0.0
+set _VERSION_=1.0.1
 
-rem Check if Windows is enterprise edition
-call ".\functions\is_enterprise.cmd"
+rem Check if Windows is Enterprise?IoT Enterprise or Education
+call ".\functions\check_requirement.cmd"
 
 rem MAIN
 :MAIN

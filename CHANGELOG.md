@@ -6,10 +6,10 @@
 
 * Added
 
-  * Detect Windows Education version
+    * Detect Windows Education version
 
 ## [1.0.0] 2025-12-12
 
 * Added
 
-  * First release.
+    * First release.

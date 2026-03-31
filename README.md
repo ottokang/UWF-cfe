@@ -1,5 +1,7 @@
 # UWF-cfe
 
+**[繁體中文](#繁體中文)** | **[English](#english)**
+
 ## 繁體中文
 
 一個使用 Windows 命令列的 UWF 前端工具，可以提供磁碟保護功能，必須要使用 Windows 11 企業版或者教育版。
@@ -11,6 +13,10 @@
 ## 圖示
 
 由 Triangle Squad 提供 ([Flaticon](https://www.flaticon.com/free-icons/saved))
+
+## 程式截圖
+
+---
 
 ## English
 

@@ -1,4 +1,4 @@
 rem No action
 
 set message="No action"
-set require_check_state=false
+set check_state_required=false

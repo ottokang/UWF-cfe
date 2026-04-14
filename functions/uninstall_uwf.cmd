@@ -8,5 +8,5 @@ DISM /Online /Disable-Feature /FeatureName:client-UnifiedWriteFilter
 echo:
 
 set message="Uninstall UWF complete"
-set require_check_state=true
+set check_state_required=true
 pause

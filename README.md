@@ -20,7 +20,7 @@
 
 ## English
 
-A UWF front-end tool for Windows command line that provides disk protection. Windows 11 Enterprise or Education edition is required.
+A UWF front-end tool for Windows command-line that provides disk protection. Windows 11 Enterprise or Education edition is required.
 
 ## Reference
 

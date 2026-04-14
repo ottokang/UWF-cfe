@@ -1,0 +1,1 @@
+rem zh-TW locale

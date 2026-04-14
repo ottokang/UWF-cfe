@@ -8,5 +8,5 @@ DISM /Online /Enable-Feature /FeatureName:client-UnifiedWriteFilter /All
 echo:
 
 set message="Install UWF complete"
-set require_check_state=true
+set check_state_required=true
 pause

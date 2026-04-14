@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+* Added
+
+    * Support multilanguage: en-US, zh-TW, zh-CN
+
 ## [1.0.1] 2025-12-13
 
 * Added

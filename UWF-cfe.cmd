@@ -4,26 +4,33 @@ cd /D "%~dp0"
 chcp 65001 > nul
 setlocal enabledelayedexpansion
 
-rem Load color, initial variables
-call ".\functions\colors.cmd"
-set message=null
-set require_check_state=true
-set is_uwf_installed=false
-set is_uwf_enabled=false
-set is_wu_enabled=true
-set is_fast_startup_enabled=true
-
 rem Set const
-set _VERSION_=1.0.1
+set "_VERSION_=1.0.2"
 
-rem Check if Windows is Enterprise?IoT Enterprise or Education
+rem Load colors, initial variables
+call ".\functions\colors.cmd"
+set "message=null"
+set "check_state_required=true"
+set "is_uwf_installed=false"
+set "is_uwf_enabled=false"
+set "is_wu_enabled=true"
+set "is_fast_startup_enabled=true"
+set "locale=null"
+
+rem Check if Windows is Enterprise or Education
 call ".\functions\check_requirement.cmd"
+
+rem Detect and set system language
+call ".\functions\detect_language.cmd"
 
 rem MAIN
 :MAIN
 
-rem Is require check state
-if %require_check_state%==true (
+rem Load langeuage file
+call ".\locales\%locale%.cmd"
+
+rem Check state if required
+if %check_state_required%==true (
     call ".\functions\check_state.cmd"
 )
 
@@ -130,7 +137,7 @@ rem Install UWF
 :INSTALL_UWF
 if %is_uwf_installed%==true (
     set message=null
-    set require_check_state=false
+    set check_state_required=false
     goto MAIN
 )
 echo:
@@ -147,7 +154,7 @@ rem Uninstall UWF
 :UNINSTALL_UWF
 if %is_uwf_installed%==false (
     set message=null
-    set require_check_state=false
+    set check_state_required=false
     goto MAIN
 )
 echo:
@@ -168,7 +175,7 @@ goto CONTINUE_ENABLE_UWF
 
 :PASS_ENABLE_UWF
 set message=null
-set require_check_state=false
+set check_state_required=false
 goto MAIN
 
 :CONTINUE_ENABLE_UWF
@@ -189,7 +196,7 @@ goto CONTINUE_DISABLE_UWF
 
 :PASS_DISABLE_UWF
 set message=null
-set require_check_state=false
+set check_state_required=false
 goto MAIN
 
 :CONTINUE_DISABLE_UWF
@@ -210,7 +217,7 @@ goto CONTINUE_RECOVER_FAST_STARTUP
 
 :PASS_RECOVER_FAST_STARTUP
 set message=null
-set require_check_state=false
+set check_state_required=false
 goto MAIN
 
 :CONTINUE_RECOVER_FAST_STARTUP
@@ -233,7 +240,7 @@ goto MAIN
 rem Refresh
 :REFRESH
 set message=null
-set require_check_state=true
+set check_state_required=true
 goto MAIN
 
 rem END

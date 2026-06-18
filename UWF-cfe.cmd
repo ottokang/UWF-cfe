@@ -1,11 +1,12 @@
 rem Run as administrator
-if not "%1"=="am_admin" (powershell start -verb runas '"%~f0"' am_admin & exit /b)
+if not "%1"=="am_admin" (powershell Start-Process wt -ArgumentList 'cmd /c \"%~f0\" am_admin' -Verb RunAs & exit /b)
 
 rem Set echo off, root path, UTF-8 encoding, setlocal, enable delayed expansion
 echo off
 cd /D "%~dp0"
 chcp 65001 > nul
 setlocal enabledelayedexpansion
+title UWF-cfe
 
 rem Set const
 set "_VERSION_=1.0.2"

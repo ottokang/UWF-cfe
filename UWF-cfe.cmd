@@ -1,3 +1,6 @@
+rem Run as administrator
+if not "%1"=="am_admin" (powershell start -verb runas '"%~f0"' am_admin & exit /b)
+
 rem Set echo off, root path, UTF-8 encoding, setlocal, enable delayed expansion
 echo off
 cd /D "%~dp0"

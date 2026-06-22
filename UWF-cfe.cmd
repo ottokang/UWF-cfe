@@ -1,4 +1,4 @@
-rem Run as administrator
+rem Run script in Windows Terminal with administrator
 if not "%1"=="am_admin" (powershell Start-Process wt -ArgumentList 'cmd /c \"%~f0\" am_admin' -Verb RunAs & exit /b)
 
 rem Set echo off, root path, UTF-8 encoding, setlocal, enable delayed expansion

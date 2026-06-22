@@ -5,7 +5,7 @@
 * Added
 
     * Support multilanguage: en-US, zh-TW, zh-CN
-    * Run as administrator
+    * Force run script in Windows Terminal with administrator
 
 ## [1.0.1] 2025-12-13
 

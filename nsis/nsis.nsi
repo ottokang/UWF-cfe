@@ -6,7 +6,7 @@
 ; Basic definitions
 !define APP_NAME "UWF-cfe"
 !define APP_EXE  "UWF-cfe.cmd"
-!define APP_VERSION "1.0.1"
+!define APP_VERSION "1.0.2"
 !define APP_PUBLISHER "UWF-cfe Developers"
 !define APP_UNINSTKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}"
 !define APP_ICON "UWF-cfe_icon.ico"
@@ -119,7 +119,7 @@ Section "Install"
     ; Create Start Menu shortcuts
     CreateDirectory "$SMPROGRAMS\${APP_NAME}"
     CreateShortcut "$SMPROGRAMS\${APP_NAME}\${APP_NAME}.lnk" "$INSTDIR\${APP_EXE}" "" "$INSTDIR\${APP_ICON}"
-    CreateShortcut "$SMPROGRAMS\${APP_NAME}\Uninstall ${APP_NAME}.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\${UNINST_ICON}"
+    CreateShortcut "$SMPROGRAMS\${APP_NAME}\Uninstall ${APP_NAME}.lnk" "$INSTDIR\uninstall ${APP_NAME}.exe" "" "$INSTDIR\${UNINST_ICON}"
 SectionEnd
 
 ; Uninstallation section

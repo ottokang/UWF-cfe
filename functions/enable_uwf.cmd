@@ -1,10 +1,14 @@
 rem Enable UWF
 
+rem Disable fast startup
 cls
-echo %cyan%Disable Fast Startup...%reset_color%
+echo %cyan%%LANG_disable_fast_start_message%%reset_color%
+echo:
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v HiberbootEnabled /t REG_DWORD /d 0 /f
+echo:
 
-echo %cyan%Enable UWF...%reset_color%
+rem Start UWF enable
+echo %cyan%%LANG_enable_uwf_message%%reset_color%
 echo:
 
 rem Set UWF overlay type to DISK
@@ -26,13 +30,13 @@ rem Set UWF volume C: to be protected
 uwfmgr volume protect c:
 echo:
 
-choice /n /m "Do you want to reboot to enable UWF？ [%green%Y%reset_color%, %red%N%reset_color%]"
+choice /n /m "%LANG_enable_uwf_reboot%"
 if !ERRORLEVEL!==1 (
     echo:
-    echo %cyan%Reboot in 3 seconds...%reset_color%
+    echo %cyan%%LANG_reboot%%reset_color%
     shutdown /r /t 3
     pause > nul
 ) else (
-    set message="Please reboot to enable UWF"
-    set is_check_state=true
+    set "message=%LANG_enable_uwf_need_reboot%"
+    set "is_check_state=true"
 )

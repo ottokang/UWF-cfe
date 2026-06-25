@@ -1,5 +1,5 @@
+@echo off
 rem Run script in Windows Terminal with administrator
-echo off
 if not "%1"=="am_admin" (powershell Start-Process wt -ArgumentList 'cmd /c \"%~f0\" am_admin' -Verb RunAs & exit /b)
 
 rem Set echo off, root path, UTF-8 encoding, setlocal, enable delayed expansion
@@ -31,9 +31,8 @@ call ".\functions\detect_language.cmd"
 rem MAIN
 :MAIN
 
-rem Load langeuage file
-rem call ".\locales\%locale%.cmd"
-call ".\locales\zh-CN.cmd"
+rem Load language file
+call ".\locales\%locale%.cmd"
 
 rem Check state if required
 if %check_state_required%==true (
@@ -252,7 +251,7 @@ goto MAIN
 rem END
 :END
 echo:
-choice /n /m %LANG_continue_quit%
+choice /n /m "%LANG_continue_quit%"
 if %ERRORLEVEL%==1 (
     exit /B 0
 ) else (

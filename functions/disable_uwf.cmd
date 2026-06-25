@@ -1,18 +1,18 @@
 rem Disable UWF
 
 cls
-echo %magenta%Disable UWF...%reset_color%
+echo %magenta%%LANG_disable_uwf_message%%reset_color%
 echo:
 uwfmgr filter disable
 echo:
 
-choice /n /m "Do you want to reboot to disable UWF？ [%green%Y%reset_color%, %red%N%reset_color%]"
+choice /n /m "%LANG_disable_uwf_reboot%"
 if !ERRORLEVEL!==1 (
     echo:
-    echo %cyan%Reboot in 3 seconds...%reset_color%
+    echo %cyan%%LANG_reboot%%reset_color%
     shutdown /r /t 3
     pause > nul
 ) else (
-    set message="Please reboot to disable UWF"
-    set is_check_state=true
+    set "message=%LANG_disable_uwf_need_reboot%"
+    set "is_check_state=true"
 )

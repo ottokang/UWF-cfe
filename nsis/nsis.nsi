@@ -93,6 +93,9 @@ Section "Install"
     SetOutPath "$INSTDIR\functions"
     File /r "..\functions\*.*"
 
+    SetOutPath "$INSTDIR\locales"
+    File /r "..\locales\*.*"
+
     SetOutPath "$INSTDIR"
     File "..\${APP_EXE}"
     File "${APP_ICON}"

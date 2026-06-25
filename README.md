@@ -16,6 +16,8 @@
 
 ## 程式截圖
 
+![Screenshot](./media/screenshot_zh_TW.png)
+
 ---
 
 ## English
@@ -32,4 +34,4 @@ Icons created by Triangle Squad ([Flaticon](https://www.flaticon.com/free-icons/
 
 ## Screenshot
 
-![Screenshot](./media/screenshot.png)
+![Screenshot](./media/screenshot_en_US.png)

@@ -1,4 +1,5 @@
 rem Run script in Windows Terminal with administrator
+echo off
 if not "%1"=="am_admin" (powershell Start-Process wt -ArgumentList 'cmd /c \"%~f0\" am_admin' -Verb RunAs & exit /b)
 
 rem Set echo off, root path, UTF-8 encoding, setlocal, enable delayed expansion
@@ -31,7 +32,8 @@ rem MAIN
 :MAIN
 
 rem Load langeuage file
-call ".\locales\%locale%.cmd"
+rem call ".\locales\%locale%.cmd"
+call ".\locales\zh-CN.cmd"
 
 rem Check state if required
 if %check_state_required%==true (
@@ -44,38 +46,38 @@ echo %cyan%%bold%^< UWF-cfe ^>%reset_color%    v%_VERSION_%
 echo:
 
 rem Show message
-if %message%==null (
+if "%message%"=="null" (
     echo:
 ) else (
-    echo %magenta_strong%  %message:~1,-1%  %reset_color%
+    echo %magenta_strong%  %message%  %reset_color%
 )
 
 rem UWF install state
 if %is_uwf_installed%==true (
-    set uwf_install_obj=[PSCustomObject]@{Name='UWF'.PadRight^(20^);State='%green_strong% Installed %reset_color%'}
+    set uwf_install_obj=[PSCustomObject]@{Name='UWF'.PadRight^(20^);State='%green_strong% %LANG_installed% %reset_color%'}
 ) else (
-    set uwf_install_obj=[PSCustomObject]@{Name='UWF'.PadRight^(20^);State='%red_strong% Not Install %reset_color%'}
+    set uwf_install_obj=[PSCustomObject]@{Name='UWF'.PadRight^(20^);State='%red_strong% %LANG_not_installed% %reset_color%'}
 )
 
 rem UWF enabled state
 if %is_uwf_enabled%==true (
-    set uwf_enable_obj=[PSCustomObject]@{Name='UWF Filter'.PadRight^(20^);State='%green_strong% Enabled %reset_color%'}
+    set uwf_enable_obj=[PSCustomObject]@{Name='UWF Filter'.PadRight^(20^);State='%green_strong% %LANG_enabled% %reset_color%'}
 ) else (
-    set uwf_enable_obj=[PSCustomObject]@{Name='UWF Filter'.PadRight^(20^);State='%red_strong% Disabled %reset_color%'}
+    set uwf_enable_obj=[PSCustomObject]@{Name='UWF Filter'.PadRight^(20^);State='%red_strong% %LANG_disabled% %reset_color%'}
 )
 
 rem Windows Update state
 if %is_wu_enabled%==true (
-    set wu_state_obj=[PSCustomObject]@{Name='Windows Update'.PadRight^(20^);State='%green_strong% Enabled %reset_color%'}
+    set wu_state_obj=[PSCustomObject]@{Name='Windows Update'.PadRight^(20^);State='%green_strong% %LANG_enabled% %reset_color%'}
 ) else (
-    set wu_state_obj=[PSCustomObject]@{Name='Windows Update'.PadRight^(20^);State='%red_strong% Disabled %reset_color%'}
+    set wu_state_obj=[PSCustomObject]@{Name='Windows Update'.PadRight^(20^);State='%red_strong% %LANG_disabled% %reset_color%'}
 )
 
 rem Fast Startup state
 if %is_fast_startup_enabled%==true (
-    set fs_state_obj=[PSCustomObject]@{Name='Fast Startup'.PadRight^(20^);State='%green_strong% Enabled %reset_color%'}
+    set fs_state_obj=[PSCustomObject]@{Name='Fast Startup'.PadRight^(20^);State='%green_strong% %LANG_enabled% %reset_color%'}
 ) else (
-    set fs_state_obj=[PSCustomObject]@{Name='Fast Startup'.PadRight^(20^);State='%red_strong% Disabled %reset_color%'}
+    set fs_state_obj=[PSCustomObject]@{Name='Fast Startup'.PadRight^(20^);State='%red_strong% %LANG_disabled% %reset_color%'}
 )
 
 rem Print state table by PowerShell
@@ -85,9 +87,9 @@ powershell -Command "$data = @(%uwf_install_obj%, %empty_line%, %uwf_enable_obj%
 rem Menu
 if %is_uwf_enabled%==false (
     if %is_uwf_installed%==true (
-        echo     %red_strong% U %reset_color% Uninstall UWF
+        echo     %red_strong% U %reset_color% %LANG_uninstall_uwf%
     ) else (
-        echo     %cyan_strong% I %reset_color% Install UWF
+        echo     %cyan_strong% I %reset_color% %LANG_install_uwf%
     )
 ) else (
     echo:
@@ -96,9 +98,9 @@ echo:
 
 if %is_uwf_installed%==true (
     if %is_uwf_enabled%==true (
-        echo     %red_strong% D %reset_color% Disable UWF
+        echo     %red_strong% D %reset_color% %LANG_disable_uwf%
     ) else (
-        echo     %cyan_strong% E %reset_color% Enable UWF
+        echo     %cyan_strong% E %reset_color% %LANG_enable_uwf%
     )
 ) else (
     echo:
@@ -108,7 +110,7 @@ echo:
 
 if %is_uwf_enabled%==false (
     if %is_fast_startup_enabled%==false (
-        echo     %yellow_strong% Z %reset_color% Recover Fast Startup
+        echo     %yellow_strong% Z %reset_color% %LANG_recover_fast_start%%
     ) else (
         echo:
     )
@@ -118,16 +120,16 @@ if %is_uwf_enabled%==false (
 echo:
 
 if %is_uwf_installed%==true (
-    echo     %white_strong% S %reset_color% Show UWF Settings
+    echo     %white_strong% S %reset_color% %LANG_show_uwf_settings%
 ) else (
     echo:
 )
 echo:
 
-echo     %magenta_strong% Q %reset_color% Quit
+echo     %magenta_strong% Q %reset_color% %LANG_quit%
 echo:
 
-choice /c iuedzs0q /n /m "Please choose command:"
+choice /c iuedzs0q /n /m "%LANG_choose_command%"
 if %ERRORLEVEL%==1 goto INSTALL_UWF
 if %ERRORLEVEL%==2 goto UNINSTALL_UWF
 if %ERRORLEVEL%==3 goto ENABLE_UWF
@@ -140,13 +142,13 @@ if %ERRORLEVEL%==8 goto END
 rem Install UWF
 :INSTALL_UWF
 if %is_uwf_installed%==true (
-    set message=null
-    set check_state_required=false
+    set "message=null"
+    set "check_state_required=false"
     goto MAIN
 )
 echo:
 
-choice /n /m "Do you want continue %cyan_strong% Install UWF %reset_color%? [%green%Y%reset_color%, %red%N%reset_color%]"
+choice /n /m "%LANG_continue_install_uwf%"
 if %ERRORLEVEL%==1 (
     call ".\functions\install_uwf.cmd"
 ) else (
@@ -157,13 +159,13 @@ goto MAIN
 rem Uninstall UWF
 :UNINSTALL_UWF
 if %is_uwf_installed%==false (
-    set message=null
-    set check_state_required=false
+    set "message=null"
+    set "check_state_required=false"
     goto MAIN
 )
 echo:
 
-choice /n /m "Do you want continue %red_strong% Uninstall UWF %reset_color%? [%green%Y%reset_color%, %red%N%reset_color%]"
+choice /n /m "%LANG_continue_uninstall_uwf%"
 if %ERRORLEVEL%==1 (
     call ".\functions\uninstall_uwf.cmd"
 ) else (
@@ -178,13 +180,13 @@ if %is_uwf_enabled%==true goto PASS_ENABLE_UWF
 goto CONTINUE_ENABLE_UWF
 
 :PASS_ENABLE_UWF
-set message=null
-set check_state_required=false
+set "message=null"
+set "check_state_required=false"
 goto MAIN
 
 :CONTINUE_ENABLE_UWF
 echo:
-choice /n /m "Do you want continue %cyan_strong% Enable UWF %reset_color%? [%green%Y%reset_color%, %red%N%reset_color%]"
+choice /n /m "%LANG_continue_enable_uwf%"
 if %ERRORLEVEL%==1 (
     call ".\functions\enable_uwf.cmd"
 ) else (
@@ -199,13 +201,13 @@ if %is_uwf_enabled%==false goto PASS_DISABLE_UWF
 goto CONTINUE_DISABLE_UWF
 
 :PASS_DISABLE_UWF
-set message=null
-set check_state_required=false
+set "message=null"
+set "check_state_required=false"
 goto MAIN
 
 :CONTINUE_DISABLE_UWF
 echo:
-choice /n /m "Do you want continue %red_strong% Disbale UWF %reset_color%? [%green%Y%reset_color%, %red%N%reset_color%]"
+choice /n /m "%LANG_continue_disable_uwf%"
 if %ERRORLEVEL%==1 (
     call ".\functions\disable_uwf.cmd"
 ) else (
@@ -220,13 +222,13 @@ if %is_fast_startup_enabled%==true goto PASS_RECOVER_FAST_STARTUP
 goto CONTINUE_RECOVER_FAST_STARTUP
 
 :PASS_RECOVER_FAST_STARTUP
-set message=null
-set check_state_required=false
+set "message=null"
+set "check_state_required=false"
 goto MAIN
 
 :CONTINUE_RECOVER_FAST_STARTUP
 echo:
-choice /n /m "Do you want continue %yellow_strong% Recover Fast Startup %reset_color%? [%green%Y%reset_color%, %red%N%reset_color%]"
+choice /n /m "%LANG_continue_recover_fast_startup%"
 if %ERRORLEVEL%==1 (
     call ".\functions\recover_fast_startup.cmd"
 ) else (
@@ -237,20 +239,20 @@ goto MAIN
 rem Show UWF Settings
 :SHOW_SETTING
 cls
-set message=null
+set "message=null"
 call ".\functions\show_uwf_settings.cmd"
 goto MAIN
 
 rem Refresh
 :REFRESH
-set message=null
-set check_state_required=true
+set "message=null"
+set "check_state_required=true"
 goto MAIN
 
 rem END
 :END
 echo:
-choice /n /m "Do you want continue %magenta_strong% Quit UWF %reset_color%? [%green%Y%reset_color%, %red%N%reset_color%]"
+choice /n /m %LANG_continue_quit%
 if %ERRORLEVEL%==1 (
     exit /B 0
 ) else (

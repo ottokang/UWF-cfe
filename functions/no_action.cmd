@@ -1,4 +1,4 @@
 rem No action
 
-set message="No action"
-set check_state_required=false
+set "message=%LANG_no_action%"
+set "check_state_required=false"

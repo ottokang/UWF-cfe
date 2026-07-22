@@ -41,7 +41,7 @@ if %check_state_required%==true (
 
 cls
 echo:
-echo %cyan%%bold%^< UWF-cfe ^>%reset_color%    v%_VERSION_%
+echo   %cyan%%bold%^< UWF-cfe ^>%reset_color%    v%_VERSION_%
 echo:
 
 rem Show message

@@ -21,7 +21,7 @@ setlocal enabledelayedexpansion
 title UWF-cfe
 
 rem Set constants
-set "_VERSION_=1.0.2"
+set "_VERSION_=1.0.3"
 
 rem Load colors, initial variables
 call ".\functions\colors.cmd"

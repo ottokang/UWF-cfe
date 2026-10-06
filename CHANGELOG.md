@@ -9,8 +9,8 @@
 
 ## [1.0.2] 2026-06-25
 
-* Support multilanguage: en-US, zh-TW, zh-CN
-* Force run script in Windows Terminal with administrator
+* Support multi-language: en-US, zh-TW, zh-CN
+* Force run script in Windows Terminal as administrator
 
 ## [1.0.1] 2025-12-13
 

@@ -7,7 +7,7 @@ echo:
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v HiberbootEnabled /t REG_DWORD /d 0 /f
 echo:
 
-rem Start UWF enable
+rem Enable UWF
 echo %cyan%%LANG_enable_uwf_message%%reset_color%
 echo:
 
@@ -23,7 +23,7 @@ uwfmgr overlay set-warningthreshold 6144
 rem Set UWF overlay critical threshold to 8192 MB
 uwfmgr overlay set-criticalthreshold 8192
 
-rem Enable UWF overlay
+rem Enable UWF filter
 uwfmgr filter enable
 
 rem Set UWF volume C: to be protected

@@ -1,4 +1,4 @@
-rem Recovery Fast Startup
+rem Recover Fast Startup
 
 cls
 echo %cyan%%LANG_recover_fast_start_message%%reset_color%

@@ -1,5 +1,5 @@
 @echo off
-rem Run script in Windows Terminal with administrator
+rem Run script in Windows Terminal as administrator
 if not "%1"=="am_admin" (powershell Start-Process wt -ArgumentList 'cmd /c \"%~f0\" am_admin' -Verb RunAs & exit /b)
 
 rem Set echo off, root path, UTF-8 encoding, setlocal, enable delayed expansion
@@ -9,7 +9,7 @@ chcp 65001 > nul
 setlocal enabledelayedexpansion
 title UWF-cfe
 
-rem Set const
+rem Set constants
 set "_VERSION_=1.0.2"
 
 rem Load colors, initial variables
@@ -79,7 +79,7 @@ if %is_fast_startup_enabled%==true (
     set fs_state_obj=[PSCustomObject]@{Name='Fast Startup'.PadRight^(20^);State='%red_strong% %LANG_disabled% %reset_color%'}
 )
 
-rem Print state table by PowerShell
+rem Print state table via PowerShell
 set empty_line=[PSCustomObject]@{Name='';State=''}
 powershell -Command "$data = @(%uwf_install_obj%, %empty_line%, %uwf_enable_obj%, %empty_line%, %wu_state_obj%, %empty_line%, %fs_state_obj%); $data | Format-Table Name,State -HideTableHeaders -AutoSize"
 

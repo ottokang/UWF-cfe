@@ -7,5 +7,5 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v Hiberbo
 echo:
 
 set "message=%LANG_recover_fast_start_complete%"
-set "is_check_state=true"
+set "check_state_required=true"
 pause

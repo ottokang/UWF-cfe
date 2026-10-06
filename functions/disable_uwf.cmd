@@ -14,5 +14,5 @@ if !ERRORLEVEL!==1 (
     pause > nul
 ) else (
     set "message=%LANG_disable_uwf_need_reboot%"
-    set "is_check_state=true"
+    set "check_state_required=true"
 )

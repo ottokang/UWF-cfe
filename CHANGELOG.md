@@ -3,6 +3,7 @@
 ## [1.0.3] Unreleased
 
 * Fix check_state_required typo
+* Fix uninstall error
 
 ## [1.0.2] 2026-06-25
 

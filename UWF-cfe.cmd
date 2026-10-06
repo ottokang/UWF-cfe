@@ -109,7 +109,7 @@ echo:
 
 if %is_uwf_enabled%==false (
     if %is_fast_startup_enabled%==false (
-        echo     %yellow_strong% Z %reset_color% %LANG_recover_fast_start%%
+        echo     %yellow_strong% Z %reset_color% %LANG_recover_fast_start%
     ) else (
         echo:
     )

@@ -134,5 +134,4 @@ Section "Uninstall"
 
     ; Remove registry entries
     DeleteRegKey HKLM "${APP_UNINSTKEY}"
-    DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}"
 SectionEnd

@@ -1,22 +1,23 @@
 # Changelog
 
-## [1.0.3] Unreleased
+## [1.0.3] -2026.10.06
 
 * Fix check_state_required typo
 * Fix uninstall error
 * Fix zh-CN language
 * Replace Get-WmiObject with Get-CimInstance
 * Change Windows Terminal detection
+* Add Overlay Usage display
 
-## [1.0.2] 2026-06-25
+## [1.0.2] -2026.06.25
 
 * Support multi-language: en-US, zh-TW, zh-CN
 * Force run script in Windows Terminal as administrator
 
-## [1.0.1] 2025-12-13
+## [1.0.1] -2025.12.13
 
 * Detect Windows Education version
 
-## [1.0.0] 2025-12-12
+## [1.0.0] -2025.12.12
 
 * First release.

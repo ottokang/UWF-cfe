@@ -4,6 +4,8 @@ set "LANG_installed=Installed"
 set "LANG_not_installed=Not Installed"
 set "LANG_enabled=Enabled"
 set "LANG_disabled=Disabled"
+set "LANG_overlay_usage=Overlay Usage"
+set "LANG_overlay_free=available: "
 
 set "LANG_uninstall_uwf=Uninstall UWF"
 set "LANG_continue_uninstall_uwf=Do you want to continue %red_strong% Uninstall UWF %reset_color% ? [%green%Y%reset_color%, %red%N%reset_color%]"

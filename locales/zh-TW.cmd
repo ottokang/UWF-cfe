@@ -4,6 +4,8 @@ set "LANG_installed=已安裝"
 set "LANG_not_installed=未安裝"
 set "LANG_enabled=已啟用"
 set "LANG_disabled=已停用"
+set "LANG_overlay_usage=Overlay 使用量"
+set "LANG_overlay_free=剩餘 "
 
 set "LANG_uninstall_uwf=解除安裝 UWF"
 set "LANG_continue_uninstall_uwf=要繼續 %red_strong% 解除安裝 UWF %reset_color% 嗎？ [%green%Y%reset_color%, %red%N%reset_color%]"

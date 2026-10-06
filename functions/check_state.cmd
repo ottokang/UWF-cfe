@@ -8,10 +8,14 @@ if "%uwf_install_state%"=="1" (
     set "is_uwf_installed=false"
 )
 
-rem Check if UWF is enabled
+rem Check if UWF is enabled & get overlay consumption
+set "overlay_consumption=0"
+set "overlay_available=0"
 if "%is_uwf_installed%"=="true" (
-    for /F "usebackq delims=" %%i in (`powershell -NoProfile -Command "(Get-CimInstance -Namespace 'root\standardcimv2\embedded' -ClassName UWF_Filter).CurrentEnabled.toString().toLower()"`) do (
+    for /F "usebackq tokens=1,2,3 delims=," %%i in (`powershell -NoProfile -Command "$f=(Get-CimInstance -Namespace 'root\standardcimv2\embedded' -ClassName UWF_Filter).CurrentEnabled; if ($f) { $o=Get-CimInstance -Namespace 'root\standardcimv2\embedded' -ClassName UWF_Overlay; Write-Output ('true,' + $o.OverlayConsumption + ',' + $o.AvailableSpace) } else { Write-Output 'false,0,0' }"` ) do (
         set "is_uwf_enabled=%%i"
+        set "overlay_consumption=%%j"
+        set "overlay_available=%%k"
     )
 )
 

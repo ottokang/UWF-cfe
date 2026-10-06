@@ -31,6 +31,8 @@ set "is_uwf_installed=false"
 set "is_uwf_enabled=false"
 set "is_wu_enabled=true"
 set "is_fast_startup_enabled=true"
+set "overlay_consumption=0"
+set "overlay_available=0"
 set "locale=null"
 
 rem Check if Windows is Enterprise or Education
@@ -64,35 +66,52 @@ if "%message%"=="null" (
 
 rem UWF install state
 if %is_uwf_installed%==true (
-    set uwf_install_obj=[PSCustomObject]@{Name='UWF'.PadRight^(20^);State='%green_strong% %LANG_installed% %reset_color%'}
+    set "uwf_install_state_str=%green_strong% %LANG_installed% %reset_color%"
 ) else (
-    set uwf_install_obj=[PSCustomObject]@{Name='UWF'.PadRight^(20^);State='%red_strong% %LANG_not_installed% %reset_color%'}
+    set "uwf_install_state_str=%red_strong% %LANG_not_installed% %reset_color%"
 )
 
 rem UWF enabled state
 if %is_uwf_enabled%==true (
-    set uwf_enable_obj=[PSCustomObject]@{Name='UWF Filter'.PadRight^(20^);State='%green_strong% %LANG_enabled% %reset_color%'}
+    set "uwf_enable_state_str=%green_strong% %LANG_enabled% %reset_color%"
 ) else (
-    set uwf_enable_obj=[PSCustomObject]@{Name='UWF Filter'.PadRight^(20^);State='%red_strong% %LANG_disabled% %reset_color%'}
+    set "uwf_enable_state_str=%red_strong% %LANG_disabled% %reset_color%"
+)
+
+rem Overlay usage state
+if %is_uwf_enabled%==true (
+    set "overlay_usage_str=%cyan%!overlay_consumption! MB (%LANG_overlay_free%!overlay_available! MB)%reset_color%"
+) else (
+    set "overlay_usage_str=%white_strong% N/A %reset_color%"
 )
 
 rem Windows Update state
 if %is_wu_enabled%==true (
-    set wu_state_obj=[PSCustomObject]@{Name='Windows Update'.PadRight^(20^);State='%green_strong% %LANG_enabled% %reset_color%'}
+    set "wu_state_str=%green_strong% %LANG_enabled% %reset_color%"
 ) else (
-    set wu_state_obj=[PSCustomObject]@{Name='Windows Update'.PadRight^(20^);State='%red_strong% %LANG_disabled% %reset_color%'}
+    set "wu_state_str=%red_strong% %LANG_disabled% %reset_color%"
 )
 
 rem Fast Startup state
 if %is_fast_startup_enabled%==true (
-    set fs_state_obj=[PSCustomObject]@{Name='Fast Startup'.PadRight^(20^);State='%green_strong% %LANG_enabled% %reset_color%'}
+    set "fs_state_str=%green_strong% %LANG_enabled% %reset_color%"
 ) else (
-    set fs_state_obj=[PSCustomObject]@{Name='Fast Startup'.PadRight^(20^);State='%red_strong% %LANG_disabled% %reset_color%'}
+    set "fs_state_str=%red_strong% %LANG_disabled% %reset_color%"
 )
 
-rem Print state table via PowerShell
-set empty_line=[PSCustomObject]@{Name='';State=''}
-powershell -Command "$data = @(%uwf_install_obj%, %empty_line%, %uwf_enable_obj%, %empty_line%, %wu_state_obj%, %empty_line%, %fs_state_obj%); $data | Format-Table Name,State -HideTableHeaders -AutoSize"
+rem Print state table
+echo:
+echo   UWF                 !uwf_install_state_str!
+echo:
+echo   UWF Filter          !uwf_enable_state_str!
+echo:
+echo   Overlay Usage       !overlay_usage_str!
+echo:
+echo   Windows Update      !wu_state_str!
+echo:
+echo   Fast Startup        !fs_state_str!
+echo:
+echo:
 
 rem Menu
 if %is_uwf_enabled%==false (

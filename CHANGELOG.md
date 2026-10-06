@@ -5,6 +5,7 @@
 * Fix check_state_required typo
 * Fix uninstall error
 * Fix zh-CN language
+* Replace Get-WmiObject with Get-CimInstance
 
 ## [1.0.2] 2026-06-25
 

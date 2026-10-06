@@ -10,7 +10,7 @@ if "%uwf_install_state%"=="1" (
 
 rem Check UWF is enabled
 if "%is_uwf_installed%"=="true" (
-    for /F "usebackq delims=" %%i in (`powershell -NoProfile -Command "(Get-WmiObject -Namespace 'root\standardcimv2\embedded' -Class UWF_Filter).CurrentEnabled.toString().toLower()"`) do (
+    for /F "usebackq delims=" %%i in (`powershell -NoProfile -Command "(Get-CimInstance -Namespace 'root\standardcimv2\embedded' -ClassName UWF_Filter).CurrentEnabled.toString().toLower()"`) do (
         set "is_uwf_enabled=%%i"
     )
 )

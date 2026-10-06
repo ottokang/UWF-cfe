@@ -6,6 +6,7 @@
 * Fix uninstall error
 * Fix zh-CN language
 * Replace Get-WmiObject with Get-CimInstance
+* Change Windows Terminal detection
 
 ## [1.0.2] 2026-06-25
 

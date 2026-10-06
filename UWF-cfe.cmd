@@ -1,6 +1,17 @@
 @echo off
-rem Run script in Windows Terminal as administrator
-if not "%1"=="am_admin" (powershell Start-Process wt -ArgumentList 'cmd /c \"%~f0\" am_admin' -Verb RunAs & exit /b)
+rem Check administrator privilege and elevate if needed (prefer Windows Terminal)
+fltmc >nul 2>&1
+if %ERRORLEVEL% equ 0 goto :IS_ADMIN
+
+where wt >nul 2>&1
+if %ERRORLEVEL% equ 0 (
+    powershell Start-Process wt -ArgumentList 'cmd /c \"%~f0\" am_admin' -Verb RunAs
+) else (
+    powershell Start-Process cmd -ArgumentList '/c \"%~f0\" am_admin' -Verb RunAs
+)
+exit /b
+
+:IS_ADMIN
 
 rem Set echo off, root path, UTF-8 encoding, setlocal, enable delayed expansion
 echo off

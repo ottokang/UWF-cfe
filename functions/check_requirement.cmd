@@ -1,6 +1,6 @@
 rem Check if the Windows edition is Enterprise or Education
-for /f "tokens=* USEBACKQ" %%F IN (`reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName" ^| find /c "Enterprise"`) do (set is_enterprise=%%F)
-for /f "tokens=* USEBACKQ" %%F IN (`reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName" ^| find /c "Education"`) do (set is_education=%%F)
+for /f "tokens=* USEBACKQ" %%F IN (`reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName" 2^>nul ^| find /c "Enterprise"`) do (set is_enterprise=%%F)
+for /f "tokens=* USEBACKQ" %%F IN (`reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName" 2^>nul ^| find /c "Education"`) do (set is_education=%%F)
 
 set /a can_use_uwf=%is_enterprise% + %is_education%
 if %can_use_uwf%==0 (

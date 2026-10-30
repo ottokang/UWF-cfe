@@ -47,7 +47,9 @@ RequestExecutionLevel admin
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
 
-; Finish page with "Create Desktop Shortcut" option
+; Finish page with "Run application" and "Create Desktop Shortcut" options
+!define MUI_FINISHPAGE_RUN "$INSTDIR\${APP_EXE}"
+!define MUI_FINISHPAGE_RUN_TEXT $(LANG_RunApp)
 !define MUI_FINISHPAGE_SHOWREADME ""
 !define MUI_FINISHPAGE_SHOWREADME_CHECKED
 !define MUI_FINISHPAGE_SHOWREADME_TEXT $(LANG_CreateDesktopShortcut)
@@ -76,6 +78,11 @@ FunctionEnd
 LangString LANG_Welcome_Title ${LANG_ENGLISH}       "Welcome to ${APP_NAME} ${APP_VERSION} Setup"
 LangString LANG_Welcome_Title ${LANG_TRADCHINESE}   "歡迎使用 ${APP_NAME} ${APP_VERSION} 安裝精靈"
 LangString LANG_Welcome_Title ${LANG_SIMPCHINESE}   "欢迎使用 ${APP_NAME} ${APP_VERSION} 安装程序"
+
+; Run application language string
+LangString LANG_RunApp ${LANG_ENGLISH}       "Run ${APP_NAME} now"
+LangString LANG_RunApp ${LANG_TRADCHINESE}   "立即啟動 ${APP_NAME}"
+LangString LANG_RunApp ${LANG_SIMPCHINESE}   "立即启动 ${APP_NAME}"
 
 ; Create desktop shortcut language string
 LangString LANG_CreateDesktopShortcut ${LANG_ENGLISH}       "Create desktop shortcut"

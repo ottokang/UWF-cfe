@@ -3,7 +3,7 @@
 ## [1.0.4] - 2026.10.30
 
 * Add option to launch UWF-cfe immediately upon installation completion in NSIS installer
-* Enhance Windows edition detection (support IoTEnterprise & Education) with option to bypass warnings
+* Enhance Windows edition detection (support IoT Enterprise & Education) with option to bypass warnings
 * Silence harmless error messages (2>nul) during startup status check
 
 ## [1.0.3] - 2026.10.06

@@ -1,5 +1,9 @@
 rem en-US locale
 
+set "LANG_requirement_warn=Your Windows edition does not support UWF (Enterprise, IoT Enterprise, or Education required)."
+set "LANG_requirement_detected=Detected Windows edition: "
+set "LANG_continue_ignore_requirement=Do you want to ignore warning and force continue? [%green%Y%reset_color%, %red%N%reset_color%]"
+
 set "LANG_installed=Installed"
 set "LANG_not_installed=Not Installed"
 set "LANG_enabled=Enabled"

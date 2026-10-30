@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.4] -2026.10.30
+
+* Add Run on finish option in NSIS installer
+* Enhance Windows edition requirement check
+* Hide check state error messages
+
 ## [1.0.3] -2026.10.06
 
 * Fix check_state_required typo

@@ -1,5 +1,9 @@
 rem zh-CN locale
 
+set "LANG_requirement_warn=您的 Windows 版本未支持 UWF 功能（需要 Enterprise、IoT Enterprise 或 Education 版本）"
+set "LANG_requirement_detected=当前检测到的 Windows 版本："
+set "LANG_continue_ignore_requirement=要忽略警告并强制继续吗？ [%green%Y%reset_color%, %red%N%reset_color%]"
+
 set "LANG_installed=已安装"
 set "LANG_not_installed=未安装"
 set "LANG_enabled=已启用"

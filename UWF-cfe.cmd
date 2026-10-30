@@ -21,7 +21,7 @@ setlocal enabledelayedexpansion
 title UWF-cfe
 
 rem Set constants
-set "_VERSION_=1.0.3"
+set "_VERSION_=1.0.4"
 
 rem Load colors, initial variables
 call ".\functions\colors.cmd"
@@ -35,11 +35,14 @@ set "overlay_consumption=0"
 set "overlay_available=0"
 set "locale=null"
 
-rem Check if Windows is Enterprise or Education
-call ".\functions\check_requirement.cmd"
-
 rem Detect and set system language
 call ".\functions\detect_language.cmd"
+
+rem Load language file
+call ".\locales\%locale%.cmd"
+
+rem Check if Windows is Enterprise or Education
+call ".\functions\check_requirement.cmd"
 
 rem MAIN
 :MAIN
